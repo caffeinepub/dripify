@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Bebas+Neue&family=Oswald:wght@400;600&family=Anton&family=Russo+One&family=Righteous&family=Permanent+Marker&family=Bangers&family=Alfa+Slab+One&family=Black+Ops+One&family=Bungee&family=Fugaz+One&family=Rubik+Mono+One&family=Playfair+Display:wght@400;700&family=Merriweather:wght@400;700&family=Libre+Baskerville:wght@400;700&family=Crimson+Text:wght@400;700&family=Cormorant:wght@400;700&family=Spectral:wght@400;700&family=Lora:wght@400;700&family=EB+Garamond:wght@400;700&family=Cinzel:wght@400;700&family=Abril+Fatface&family=Roboto:wght@400;700&family=Montserrat:wght@400;700&family=Poppins:wght@400;700&family=Raleway:wght@400;700&family=Open+Sans:wght@400;700&family=Lato:wght@400;700&family=Nunito:wght@400;700&family=Work+Sans:wght@400;700&family=Manrope:wght@400;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --radius: 0.5rem;
+        --background: 0.145 0 0;
+        --foreground: 0.97 0 0;
+        --card: 0.205 0 0;
+        --card-foreground: 0.97 0 0;
+        --popover: 0.205 0 0;
+        --popover-foreground: 0.97 0 0;
+        --primary: 0.85 0.18 127;
+        --primary-foreground: 0.145 0 0;
+        --secondary: 0.371 0 0;
+        --secondary-foreground: 0.97 0 0;
+        --muted: 0.269 0 0;
+        --muted-foreground: 0.708 0 0;
+        --accent: 0.85 0.22 85;
+        --accent-foreground: 0.145 0 0;
+        --destructive: 0.577 0.245 27.325;
+        --destructive-foreground: 0.97 0 0;
+        --border: 0.371 0 0;
+        --input: 0.371 0 0;
+        --ring: 0.85 0.18 127;
+        --chart-1: 0.85 0.18 127;
+        --chart-2: 0.85 0.22 85;
+        --chart-3: 0.708 0.15 45;
+        --chart-4: 0.577 0.245 27.325;
+        --chart-5: 0.488 0.243 264.376;
+    }
+
+    .dark {
+        --background: 0.145 0 0;
+        --foreground: 0.97 0 0;
+        --card: 0.205 0 0;
+        --card-foreground: 0.97 0 0;
+        --popover: 0.205 0 0;
+        --popover-foreground: 0.97 0 0;
+        --primary: 0.85 0.18 127;
+        --primary-foreground: 0.145 0 0;
+        --secondary: 0.371 0 0;
+        --secondary-foreground: 0.97 0 0;
+        --muted: 0.269 0 0;
+        --muted-foreground: 0.708 0 0;
+        --accent: 0.85 0.22 85;
+        --accent-foreground: 0.145 0 0;
+        --destructive: 0.577 0.245 27.325;
+        --destructive-foreground: 0.97 0 0;
+        --border: 0.371 0 0;
+        --input: 0.371 0 0;
+        --ring: 0.85 0.18 127;
+        --chart-1: 0.85 0.18 127;
+        --chart-2: 0.85 0.22 85;
+        --chart-3: 0.708 0.15 45;
+        --chart-4: 0.577 0.245 27.325;
+        --chart-5: 0.488 0.243 264.376;
+    }
+
+    * {
+        @apply border-border;
+    }
+    body {
+        @apply bg-background text-foreground;
+        font-family: 'Inter', sans-serif;
+    }
+}
+

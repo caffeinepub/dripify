@@ -1,0 +1,99 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "Build \"Dripify\", a clothing design app featuring 3D garment mockup views and rich design tools, including a large font library (modern, vintage, and urban-culture styles) for adding text to clothing designs.",
+  "architectural_notes": [],
+  "known_issues": [],
+  "isFixRequest": false,
+  "imageRequirements": "## Required Images\n- Dripify wordmark logo, high-contrast streetwear style (dripify-logo.dim_1024x256.png)\n- Seamless gritty streetwear texture background (dripify-bg-texture.dim_2048x2048.png)\n- Minimal set of garment preview thumbnails: T-shirt and hoodie silhouettes, monochrome (garment-thumbs.dim_1024x512.png)",
+  "existing_features": [
+    {
+      "id": "feature-create-the-dripify-app-shell-single-page-or-routed-with-a-clear-workflow-choose-garment-mockup-add-edit-design-elements-starting-with-text-preview-in-3d-and-save-load-designs",
+      "title": "Create the Dripify app shell (single-page or routed) with a clear workflow: choose garment mockup, add/edit design elements (starting with text), preview in 3D, and save/load designs.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-3d-garment-mockup-preview-using-react-three-fiber-three-js-allowing-users-to-orbit-zoom-the-camera-and-see-their-design-applied-onto-the-garment-surface",
+      "title": "Implement 3D garment mockup preview using React Three Fiber/Three.js, allowing users to orbit/zoom the camera and see their design applied onto the garment surface.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-core-cool-design-features-for-text-based-apparel-design-add-text-move-rotate-scale-change-color-set-alignment-and-manage-multiple-text-layers-add-delete-reorder",
+      "title": "Build core “cool design features” for text-based apparel design: add text, move/rotate/scale, change color, set alignment, and manage multiple text layers (add/delete/reorder).",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-provide-a-large-font-library-focused-on-modern-latest-vintage-retro-oldest-and-urban-culture-styles-include-font-browsing-search-filter-and-apply-selected-font-to-the-active-text-layer",
+      "title": "Provide a large font library focused on modern (“latest”), vintage/retro (“oldest”), and urban-culture styles; include font browsing, search/filter, and apply selected font to the active text layer.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-wire-the-frontend-to-backend-persistence-with-react-query-users-can-save-the-current-design-see-a-list-of-their-saved-designs-load-one-into-the-editor-3d-preview-rename-it-and-delete-it",
+      "title": "Wire the frontend to backend persistence with React Query: users can save the current design, see a list of their saved designs, load one into the editor/3D preview, rename it, and delete it.",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-define-and-apply-a-cohesive-distinctive-visual-theme-for-dripify-colors-typography-spacing-and-component-styling-appropriate-for-streetwear-urban-fashion-enforce-consistent-styling-across-the-app-without-using-a-blue-purple-primary-palette",
+      "title": "Define and apply a cohesive, distinctive visual theme for Dripify (colors, typography, spacing, and component styling) appropriate for streetwear/urban fashion; enforce consistent styling across the app without using a blue/purple primary palette.",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-generated-static-brand-visual-assets-to-the-app-and-reference-them-from-the-ui-served-from-frontend-public-assets-generated-to-reinforce-the-dripify-identity",
+      "title": "Add generated static brand/visual assets to the app and reference them from the UI (served from frontend/public/assets/generated) to reinforce the Dripify identity.",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Add 3D clothing mockup views so users can preview designs on garments.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Provide clothing design tools/features for creating and editing apparel designs.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Include a large font library for text on clothing (latest, oldest/vintage, and urban-culture styles).",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-8",
+      "summary": "Add backend persistence for Dripify designs (create, list, get, update, delete) associated with the signed-in Internet Identity principal; store design data needed to restore the editor and 3D preview (garment type + text layers and their properties).",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Dripify",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

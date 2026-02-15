@@ -1,0 +1,88 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-15T20:57:21.998Z",
+  "summary": "Most core requirements appear implemented: app shell with garment selection, 2D text-layer editor, R3F 3D preview with orbit/zoom, React Query wiring for save/list/load/delete/rename UI, cohesive non-blue/purple theme cues, and generated asset references. One clear gap is REQ-4’s graceful font fallback indication; and backend CRUD completeness (update vs create, list/rename methods) cannot be fully verified due to backend truncation.",
+  "missing_requirements": [
+    {
+      "id": "REQ-4",
+      "requirement": "If some fonts are not available at runtime, the UI degrades gracefully (falls back to a default font and indicates the fallback).",
+      "reason": "Font registry includes an `available` flag but the picker and rendering logic shown do not use it to indicate fallback or switch to a safe default when a font is unavailable.",
+      "evidence": [
+        "frontend/src/fonts/fontRegistry.ts",
+        "frontend/src/components/dripify/editor/FontPicker.tsx",
+        "frontend/src/components/dripify/editor/DesignCanvas2D.tsx",
+        "frontend/src/components/dripify/preview3d/useDesignTexture.ts"
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "requirement": "Backend exposes methods to create, list, get, update, and delete designs scoped to the authenticated principal.",
+      "reason": "Diff shows `saveDesign`, `getDesign`, `deleteDesign`, and a truncated `listMyDesigns`, but does not show explicit update semantics (e.g., preserving `createdAt` on update) or a distinct update method; `listMyDesigns` and any rename/update methods are truncated so full CRUD cannot be confirmed from provided evidence.",
+      "evidence": [
+        "backend/main.mo (truncated)"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "User profile creation/viewing and a profile setup dialog gating authenticated users.",
+      "reason": "BuildRequest focuses on design editor + persistence per principal; it did not request user profile storage or a profile setup flow.",
+      "evidence": [
+        "backend/main.mo (truncated)",
+        "frontend/src/components/auth/ProfileSetupDialog.tsx",
+        "frontend/src/App.tsx"
+      ]
+    },
+    {
+      "description": "Admin/permission initialization via secret token and access-control mixin authorization.",
+      "reason": "Not requested in requirements; additional authorization layer beyond scoping designs to principal.",
+      "evidence": [
+        "backend/main.mo (truncated)",
+        "frontend/src/hooks/useActor.ts"
+      ]
+    },
+    {
+      "description": "Support for many additional garment types beyond minimum T-shirt and hoodie in backend type definition.",
+      "reason": "REQ-1/REQ-2 require at least T-shirt and hoodie; extensive garment enum is extra beyond request.",
+      "evidence": [
+        "backend/main.mo (truncated)"
+      ]
+    }
+  ],
+  "confidence": 0.66,
+  "changed_files": [
+    "all_files_summary.json",
+    "backend/main.mo",
+    "frontend-file-summaries.txt",
+    "frontend/index.css",
+    "frontend/index.html",
+    "frontend/src/App.tsx",
+    "frontend/src/components/auth/LoginButton.tsx",
+    "frontend/src/components/auth/ProfileSetupDialog.tsx",
+    "frontend/src/components/dripify/AppLayout.tsx",
+    "frontend/src/components/dripify/GarmentSelector.tsx",
+    "frontend/src/components/dripify/HeaderBar.tsx",
+    "frontend/src/components/dripify/editor/DesignCanvas2D.tsx",
+    "frontend/src/components/dripify/editor/FontPicker.tsx",
+    "frontend/src/components/dripify/editor/LayersPanel.tsx",
+    "frontend/src/components/dripify/editor/TextLayerControls.tsx",
+    "frontend/src/components/dripify/persistence/SaveDesignButton.tsx",
+    "frontend/src/components/dripify/persistence/SavedDesignsSheet.tsx",
+    "frontend/src/components/dripify/preview3d/Dripify3DPreview.tsx",
+    "frontend/src/components/dripify/preview3d/garments/HoodieMock.tsx",
+    "frontend/src/components/dripify/preview3d/garments/TShirtMock.tsx",
+    "frontend/src/components/dripify/preview3d/useDesignTexture.ts",
+    "frontend/src/fonts/fontRegistry.ts",
+    "frontend/src/hooks/useActor.ts",
+    "frontend/src/hooks/useDesigns.ts",
+    "frontend/src/hooks/useInternetIdentity.ts",
+    "frontend/src/hooks/useUserProfile.ts",
+    "frontend/src/index.css",
+    "frontend/src/main.tsx",
+    "frontend/src/state/dripify/designState.ts",
+    "frontend/src/utils/urlParams.ts",
+    "frontend/tailwind.config.js",
+    "project_state.json"
+  ]
+}

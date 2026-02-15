@@ -1,0 +1,179 @@
+{
+  "kind": "build_request",
+  "title": "Dripify: Clothing design app with 3D mockups and rich typography",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Create the Dripify app shell (single-page or routed) with a clear workflow: choose garment mockup, add/edit design elements (starting with text), preview in 3D, and save/load designs.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Can you create a clothing design app that has 3D mockup views and cool design features the app name is dripify"
+        ]
+      },
+      "acceptanceCriteria": [
+        "The UI shows the product name “Dripify” in the header/title.",
+        "Users can select a garment type (at minimum: T-shirt and hoodie) from within the UI.",
+        "Users can access a design editor area and a 3D preview area within the same experience (tabs or split view are acceptable).",
+        "There is a visible Save action and a way to view previously saved designs."
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Implement 3D garment mockup preview using React Three Fiber/Three.js, allowing users to orbit/zoom the camera and see their design applied onto the garment surface.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "clothing design app that has 3D mockup views"
+        ]
+      },
+      "acceptanceCriteria": [
+        "A 3D viewport renders a garment mockup (T-shirt and hoodie minimum).",
+        "Users can rotate/orbit and zoom the 3D camera with mouse/touch controls.",
+        "The current design (text layer from the editor) is visible on the garment in the 3D view and updates when the user changes it.",
+        "The 3D view remains responsive (no layout break) across common screen sizes."
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Build core “cool design features” for text-based apparel design: add text, move/rotate/scale, change color, set alignment, and manage multiple text layers (add/delete/reorder).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "cool design features",
+          "design to write cool things on clothing"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Users can add a new text layer and edit its content.",
+        "Users can position text via drag on a 2D editor canvas (or equivalent controls) and see the position reflected in the preview.",
+        "Users can rotate and scale the text layer.",
+        "Users can change text color (at least via a color picker or preset swatches).",
+        "Users can manage multiple text layers: select active layer, reorder (front/back), and delete a layer."
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Provide a large font library focused on modern (“latest”), vintage/retro (“oldest”), and urban-culture styles; include font browsing, search/filter, and apply selected font to the active text layer.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "it should have a lot of fonts for writing the latest and oldest ones some for urban culture design"
+        ]
+      },
+      "acceptanceCriteria": [
+        "The editor includes a font picker for the active text layer.",
+        "Fonts are organized into at least three categories: Modern, Vintage, Urban.",
+        "Users can search fonts by name and filter by category.",
+        "Applying a font updates the text rendering in the editor and in the 3D preview.",
+        "If some fonts are not available at runtime, the UI degrades gracefully (falls back to a default font and indicates the fallback)."
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "text": "Add backend persistence for Dripify designs (create, list, get, update, delete) associated with the signed-in Internet Identity principal; store design data needed to restore the editor and 3D preview (garment type + text layers and their properties).",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "clothing design app",
+          "design features"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Backend exposes methods to create, list, get, update, and delete designs.",
+        "Designs are scoped per authenticated user (principal); one user cannot access another user’s designs.",
+        "A saved design can be loaded and restores garment selection and all text layers (content, font, size/scale, rotation, color, position, ordering)."
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "text": "Wire the frontend to backend persistence with React Query: users can save the current design, see a list of their saved designs, load one into the editor/3D preview, rename it, and delete it.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "clothing design app"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Saving a design creates or updates a backend record and shows a success state in the UI.",
+        "The saved designs list loads from the backend and reflects changes after create/update/delete without a manual refresh.",
+        "Loading a saved design updates the editor state and the 3D preview to match the saved data.",
+        "Deleting a design removes it from the backend and it no longer appears in the list."
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "text": "Define and apply a cohesive, distinctive visual theme for Dripify (colors, typography, spacing, and component styling) appropriate for streetwear/urban fashion; enforce consistent styling across the app without using a blue/purple primary palette.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "the app name is dripify"
+        ]
+      },
+      "acceptanceCriteria": [
+        "App uses a consistent theme (backgrounds, surfaces, typography, and buttons) across all screens.",
+        "Primary palette is not blue/purple-dominant.",
+        "Key interactive elements (font picker, layer list, save/load) are visually clear and consistent."
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "text": "Add generated static brand/visual assets to the app and reference them from the UI (served from frontend/public/assets/generated) to reinforce the Dripify identity.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "the app name is dripify"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Generated images are placed under frontend/public/assets/generated and referenced directly by the frontend (no backend image routing).",
+        "The Dripify logo is displayed in the app header (or landing section) and remains crisp at common sizes.",
+        "At least one additional generated visual (e.g., subtle background or banner) is used in the UI without harming readability."
+      ]
+    }
+  ],
+  "constraints": [
+    "Backend must remain a single Motoko actor (no additional backend services).",
+    "Do not edit files under frontend/src/components/ui or other immutablePaths; compose UI using those components instead.",
+    "Use English for all user-facing UI text."
+  ],
+  "nonGoals": [
+    "E-commerce features (checkout, payments, product catalog management).",
+    "External font marketplace integrations or third-party APIs for fonts.",
+    "Real-time multi-user collaboration.",
+    "Photo upload/print-on-demand order fulfillment integrations."
+  ],
+  "imageRequirements": {
+    "required": [
+      "Dripify wordmark logo, high-contrast streetwear style (dripify-logo.dim_1024x256.png)",
+      "Seamless gritty streetwear texture background (dripify-bg-texture.dim_2048x2048.png)",
+      "Minimal set of garment preview thumbnails: T-shirt and hoodie silhouettes, monochrome (garment-thumbs.dim_1024x512.png)"
+    ],
+    "edits": []
+  }
+}

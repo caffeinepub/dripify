@@ -1,0 +1,286 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Dripify: 3D clothing mockups + typography design studio (frontend)",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Create the Dripify app shell with a clear garment→edit→3D preview→save/load workflow.",
+      "acceptanceCriteria": [
+        "The UI shows the product name “Dripify” in the header/title.",
+        "Users can select a garment type (at minimum: T-shirt and hoodie) from within the UI.",
+        "Users can access a design editor area and a 3D preview area within the same experience (tabs or split view are acceptable).",
+        "There is a visible Save action and a way to view previously saved designs."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "create",
+          "description": "Implement the main Dripify single-page shell: header (brand + auth), garment selector (T-shirt/hoodie), editor panel, and 3D preview panel (tabbed or split). Use shadcn-ui components for layout primitives (e.g., Button, Tabs, Dialog, Sheet/Drawer, Input) and compose them without modifying files under frontend/src/components/ui. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/main.tsx",
+          "operation": "modify",
+          "description": "Ensure the root renders the newly created App shell and that React Query + InternetIdentityProvider remain wired for Save/Load flows."
+        },
+        {
+          "path": "frontend/src/components/dripify/HeaderBar.tsx",
+          "operation": "create",
+          "description": "Create a reusable header containing the Dripify brand (logo + wordmark), login/logout control, and primary actions entry points (e.g., Save, Saved designs). Use shadcn-ui components for buttons/menus. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/dripify/GarmentSelector.tsx",
+          "operation": "create",
+          "description": "Create garment selection UI for at least T-shirt and hoodie, including thumbnail support and clear active selection state. Use shadcn-ui components (cards/buttons/toggles). Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/state/dripify/designState.ts",
+          "operation": "create",
+          "description": "Add frontend state management utilities (types + reducers/helpers) for current garment selection, text layers, and selection state, designed to serialize/deserialize cleanly for save/load."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Implement a 3D game-like (3D game) garment mockup preview using React Three Fiber with orbit/zoom controls and live-updating applied text design.",
+      "acceptanceCriteria": [
+        "A 3D viewport renders a garment mockup (T-shirt and hoodie minimum).",
+        "Users can rotate/orbit and zoom the 3D camera with mouse/touch controls.",
+        "The current design (text layer from the editor) is visible on the garment in the 3D view and updates when the user changes it.",
+        "The 3D view remains responsive (no layout break) across common screen sizes."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/package.json",
+          "operation": "create",
+          "description": "Add/ensure dependencies needed for 3D preview: three, @react-three/fiber, and @react-three/drei (or equivalents already present)."
+        },
+        {
+          "path": "frontend/src/components/dripify/preview3d/Dripify3DPreview.tsx",
+          "operation": "create",
+          "description": "Create the 3D preview viewport using React Three Fiber + Three.js with OrbitControls for orbit/zoom. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/dripify/preview3d/garments/TShirtMock.tsx",
+          "operation": "create",
+          "description": "Implement a simple T-shirt 3D mock (procedural geometry or lightweight mesh) that supports applying a design texture to the garment surface."
+        },
+        {
+          "path": "frontend/src/components/dripify/preview3d/garments/HoodieMock.tsx",
+          "operation": "create",
+          "description": "Implement a simple hoodie 3D mock (procedural geometry or lightweight mesh) that supports applying a design texture to the garment surface."
+        },
+        {
+          "path": "frontend/src/components/dripify/preview3d/useDesignTexture.ts",
+          "operation": "create",
+          "description": "Create a hook that converts the current 2D design (text layers) into a texture source suitable for 3D (e.g., offscreen canvas render), updating reactively when layers change."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire the 3D preview component into the app shell and pass the current design state so the garment updates live."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Build core text design tooling: add/edit text, drag move, rotate/scale, color, alignment, and manage multiple layers (add/delete/reorder).",
+      "acceptanceCriteria": [
+        "Users can add a new text layer and edit its content.",
+        "Users can position text via drag on a 2D editor canvas (or equivalent controls) and see the position reflected in the preview.",
+        "Users can rotate and scale the text layer.",
+        "Users can change text color (at least via a color picker or preset swatches).",
+        "Users can manage multiple text layers: select active layer, reorder (front/back), and delete a layer."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/dripify/editor/DesignCanvas2D.tsx",
+          "operation": "create",
+          "description": "Create a 2D editor canvas that renders text layers and supports selecting and dragging the active layer (pointer/mouse/touch), keeping it in sync with the shared design state."
+        },
+        {
+          "path": "frontend/src/components/dripify/editor/TextLayerControls.tsx",
+          "operation": "create",
+          "description": "Create controls for the active text layer: content input, rotate/scale controls (e.g., sliders), alignment, and color selection (swatches and/or picker). Use shadcn-ui components (Input, Slider, ToggleGroup, Popover, etc.). Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/dripify/editor/LayersPanel.tsx",
+          "operation": "create",
+          "description": "Create a layers list UI: add new layer, select active layer, delete, and reorder (move up/down). Use shadcn-ui components for list rows/buttons. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/state/dripify/designState.ts",
+          "operation": "modify",
+          "description": "Extend state helpers to support multi-layer operations (create/delete/select/reorder) and transformations (position/rotation/scale/color/alignment) in a serializable form."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire the 2D canvas + layer controls + layers panel into the editor area, and ensure state changes propagate to the 3D preview."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Provide a categorized font library (Modern/Vintage/Urban) with search/filter and apply-to-active-layer; handle missing fonts gracefully.",
+      "acceptanceCriteria": [
+        "The editor includes a font picker for the active text layer.",
+        "Fonts are organized into at least three categories: Modern, Vintage, Urban.",
+        "Users can search fonts by name and filter by category.",
+        "Applying a font updates the text rendering in the editor and in the 3D preview.",
+        "If some fonts are not available at runtime, the UI degrades gracefully (falls back to a default font and indicates the fallback)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/package.json",
+          "operation": "modify",
+          "description": "Add/ensure a bundled font strategy (e.g., a set of @fontsource packages) to support a larger offline-friendly font list without relying on third-party font APIs."
+        },
+        {
+          "path": "frontend/src/fonts/fontRegistry.ts",
+          "operation": "create",
+          "description": "Define the font catalog with name, CSS fontFamily, and category (Modern/Vintage/Urban), plus any metadata needed for search/filter and graceful fallback."
+        },
+        {
+          "path": "frontend/src/fonts/loadFonts.ts",
+          "operation": "create",
+          "description": "Implement font loading/availability checks (e.g., document.fonts) and expose a small helper to detect/flag missing fonts so the UI can show fallback indicators."
+        },
+        {
+          "path": "frontend/src/components/dripify/editor/FontPicker.tsx",
+          "operation": "create",
+          "description": "Create font picker UI with category filter + search + apply to active layer. Use shadcn-ui components (Select/Combobox-style Popover + Command, Input, Tabs). Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/dripify/editor/TextLayerControls.tsx",
+          "operation": "modify",
+          "description": "Integrate the FontPicker into the active-layer controls and ensure changing the font updates both 2D editor rendering and 3D preview texture generation."
+        }
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "summary": "Wire save/load/rename/delete design persistence using React Query and authenticated Internet Identity; show saved designs list and keep UI in sync after mutations.",
+      "acceptanceCriteria": [
+        "Saving a design creates or updates a backend record and shows a success state in the UI.",
+        "The saved designs list loads from the backend and reflects changes after create/update/delete without a manual refresh.",
+        "Loading a saved design updates the editor state and the 3D preview to match the saved data.",
+        "Deleting a design removes it from the backend and it no longer appears in the list."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/useUserProfile.ts",
+          "operation": "create",
+          "description": "Create React Query hooks for authorization component flows: getCallerUserProfile/saveCallerUserProfile and any needed current-role checks. Use the authorization component’s frontend guidance for avoiding profile-setup modal flash. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/auth/LoginButton.tsx",
+          "operation": "create",
+          "description": "Add a login/logout button using the authorization component’s recommended Internet Identity pattern, including clearing React Query cache on logout. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/auth/ProfileSetupDialog.tsx",
+          "operation": "create",
+          "description": "Prompt first-time authenticated users for a display name and save it via saveCallerUserProfile; do not show principal IDs. Use shadcn-ui Dialog/Form components. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/hooks/useDesigns.ts",
+          "operation": "create",
+          "description": "Create React Query hooks for designs: listMyDesigns, getDesign (as needed), saveDesign, renameDesign, deleteDesign; ensure cache invalidation keeps the list fresh after mutations."
+        },
+        {
+          "path": "frontend/src/components/dripify/persistence/SavedDesignsSheet.tsx",
+          "operation": "create",
+          "description": "Create a saved designs UI (sheet/drawer/modal) listing the user’s designs with actions: load, rename, delete; include optimistic/disabled states and clear success/error messaging. Use shadcn-ui components (Sheet/Dialog, Button, Input). Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/dripify/persistence/SaveDesignButton.tsx",
+          "operation": "create",
+          "description": "Create a Save action that persists the current design (create/update semantics) and shows a success state (toast/banner/inline). Use shadcn-ui components. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire authentication gating per the authorization component: require login before showing saved designs/persistence UI and before loading any personal data; integrate ProfileSetupDialog, SaveDesignButton, and SavedDesignsSheet; ensure load applies state to editor + 3D preview."
+        },
+        {
+          "path": "frontend/src/components/dripify/HeaderBar.tsx",
+          "operation": "modify",
+          "description": "Integrate LoginButton, user display name (from user profile), and entry points for Save + Saved designs list. Verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "summary": "Apply a cohesive streetwear/urban theme across Dripify with consistent styling and a non-blue/purple primary palette.",
+      "acceptanceCriteria": [
+        "App uses a consistent theme (backgrounds, surfaces, typography, and buttons) across all screens.",
+        "Primary palette is not blue/purple-dominant.",
+        "Key interactive elements (font picker, layer list, save/load) are visually clear and consistent."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "create",
+          "description": "Define global theme tokens (CSS variables used by Tailwind/shadcn) for a streetwear look (e.g., dark graphite backgrounds, off-white text, accent like neon-lime/amber), ensuring primary is not blue/purple-dominant; include baseline typography and layout defaults."
+        },
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Adjust Tailwind theme extensions as needed to support the Dripify visual system (spacing, shadows, radii, and any additional semantic colors) while keeping consistency with shadcn token usage."
+        },
+        {
+          "path": "frontend/src/components/dripify/AppLayout.tsx",
+          "operation": "create",
+          "description": "Create a layout wrapper that applies consistent surfaces, spacing, and responsive structure across the app. Use shadcn-ui components where appropriate. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wrap the app shell with AppLayout and ensure the editor/preview/persistence panels use consistent themed components and spacing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "summary": "Add and reference generated static Dripify brand assets from frontend/public/assets/generated (logo, background texture, garment thumbnails).",
+      "acceptanceCriteria": [
+        "Generated images are placed under frontend/public/assets/generated and referenced directly by the frontend (no backend image routing).",
+        "The Dripify logo is displayed in the app header (or landing section) and remains crisp at common sizes.",
+        "At least one additional generated visual (e.g., subtle background or banner) is used in the UI without harming readability."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/public/assets/generated/dripify-logo.dim_1024x256.png",
+          "operation": "create",
+          "description": "Add the generated Dripify wordmark logo asset at the exact path frontend/public/assets/generated/dripify-logo.dim_1024x256.png."
+        },
+        {
+          "path": "frontend/public/assets/generated/dripify-bg-texture.dim_2048x2048.png",
+          "operation": "create",
+          "description": "Add the generated gritty streetwear texture background asset at the exact path frontend/public/assets/generated/dripify-bg-texture.dim_2048x2048.png."
+        },
+        {
+          "path": "frontend/public/assets/generated/garment-thumbs.dim_1024x512.png",
+          "operation": "create",
+          "description": "Add the generated garment thumbnails asset at the exact path frontend/public/assets/generated/garment-thumbs.dim_1024x512.png."
+        },
+        {
+          "path": "frontend/src/components/dripify/HeaderBar.tsx",
+          "operation": "modify",
+          "description": "Reference and render the logo from frontend/public/assets/generated/dripify-logo.dim_1024x256.png in the header at a crisp display size (no backend image routing)."
+        },
+        {
+          "path": "frontend/src/components/dripify/AppLayout.tsx",
+          "operation": "modify",
+          "description": "Apply the background texture subtly using frontend/public/assets/generated/dripify-bg-texture.dim_2048x2048.png while preserving readability (e.g., overlay/opacity treatment)."
+        },
+        {
+          "path": "frontend/src/components/dripify/GarmentSelector.tsx",
+          "operation": "modify",
+          "description": "Use frontend/public/assets/generated/garment-thumbs.dim_1024x512.png to visually reinforce the T-shirt/hoodie choices (e.g., cropping into two selectable thumbnails)."
+        }
+      ]
+    }
+  ]
+}

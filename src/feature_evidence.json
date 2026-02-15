@@ -1,0 +1,164 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-create-the-dripify-app-shell-single-page-or-routed-with-a-clear-workflow-choose-garment-mockup-add-edit-design-elements-starting-with-text-preview-in-3d-and-save-load-designs",
+      "featureTitle": "Create the Dripify app shell (single-page or routed) with a clear workflow: choose garment mockup, add/edit design elements (starting with text), preview in 3D, and save/load designs.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/dripify/GarmentSelector.tsx",
+        "frontend/src/components/dripify/HeaderBar.tsx",
+        "frontend/src/main.tsx",
+        "frontend/src/state/dripify/designState.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-1"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-3d-garment-mockup-preview-using-react-three-fiber-three-js-allowing-users-to-orbit-zoom-the-camera-and-see-their-design-applied-onto-the-garment-surface",
+      "featureTitle": "Implement 3D garment mockup preview using React Three Fiber/Three.js, allowing users to orbit/zoom the camera and see their design applied onto the garment surface.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/dripify/preview3d/Dripify3DPreview.tsx",
+        "frontend/src/components/dripify/preview3d/garments/HoodieMock.tsx",
+        "frontend/src/components/dripify/preview3d/garments/TShirtMock.tsx",
+        "frontend/src/components/dripify/preview3d/useDesignTexture.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-2"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-build-core-cool-design-features-for-text-based-apparel-design-add-text-move-rotate-scale-change-color-set-alignment-and-manage-multiple-text-layers-add-delete-reorder",
+      "featureTitle": "Build core “cool design features” for text-based apparel design: add text, move/rotate/scale, change color, set alignment, and manage multiple text layers (add/delete/reorder).",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/dripify/editor/DesignCanvas2D.tsx",
+        "frontend/src/components/dripify/editor/LayersPanel.tsx",
+        "frontend/src/components/dripify/editor/TextLayerControls.tsx",
+        "frontend/src/state/dripify/designState.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-3"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-provide-a-large-font-library-focused-on-modern-latest-vintage-retro-oldest-and-urban-culture-styles-include-font-browsing-search-filter-and-apply-selected-font-to-the-active-text-layer",
+      "featureTitle": "Provide a large font library focused on modern (“latest”), vintage/retro (“oldest”), and urban-culture styles; include font browsing, search/filter, and apply selected font to the active text layer.",
+      "files": [
+        "frontend/src/components/dripify/editor/FontPicker.tsx",
+        "frontend/src/components/dripify/editor/TextLayerControls.tsx",
+        "frontend/src/fonts/fontRegistry.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-4"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-wire-the-frontend-to-backend-persistence-with-react-query-users-can-save-the-current-design-see-a-list-of-their-saved-designs-load-one-into-the-editor-3d-preview-rename-it-and-delete-it",
+      "featureTitle": "Wire the frontend to backend persistence with React Query: users can save the current design, see a list of their saved designs, load one into the editor/3D preview, rename it, and delete it.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/auth/LoginButton.tsx",
+        "frontend/src/components/auth/ProfileSetupDialog.tsx",
+        "frontend/src/components/dripify/HeaderBar.tsx",
+        "frontend/src/components/dripify/persistence/SaveDesignButton.tsx",
+        "frontend/src/components/dripify/persistence/SavedDesignsSheet.tsx",
+        "frontend/src/hooks/useDesigns.ts",
+        "frontend/src/hooks/useUserProfile.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-6"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-define-and-apply-a-cohesive-distinctive-visual-theme-for-dripify-colors-typography-spacing-and-component-styling-appropriate-for-streetwear-urban-fashion-enforce-consistent-styling-across-the-app-without-using-a-blue-purple-primary-palette",
+      "featureTitle": "Define and apply a cohesive, distinctive visual theme for Dripify (colors, typography, spacing, and component styling) appropriate for streetwear/urban fashion; enforce consistent styling across the app without using a blue/purple primary palette.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/dripify/AppLayout.tsx",
+        "frontend/src/index.css",
+        "frontend/tailwind.config.js"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-7"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-generated-static-brand-visual-assets-to-the-app-and-reference-them-from-the-ui-served-from-frontend-public-assets-generated-to-reinforce-the-dripify-identity",
+      "featureTitle": "Add generated static brand/visual assets to the app and reference them from the UI (served from frontend/public/assets/generated) to reinforce the Dripify identity.",
+      "files": [
+        "frontend/src/components/dripify/AppLayout.tsx",
+        "frontend/src/components/dripify/GarmentSelector.tsx",
+        "frontend/src/components/dripify/HeaderBar.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-8"
+      ],
+      "confidence": "high"
+    }
+  ]
+}
